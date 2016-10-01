@@ -1,5 +1,12 @@
 package ANN;
 
-public class HiddenLayer {
+import java.util.ArrayList;
 
+public class HiddenLayer {
+	
+	ArrayList<Layer> hiddenLayers;
+	
+	public HiddenLayer( int numOfNeurons){
+		
+	}
 }
