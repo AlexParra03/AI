@@ -5,10 +5,10 @@ public class HiddenLayer {
 	
 	private Layer[] hiddenLayers;
 	
-	public HiddenLayer( int layers , int[] numOfNeurons, InputLayer inputLayer){
+	public HiddenLayer( int[] numOfNeurons, InputLayer inputLayer){
 		
-		if( (layers == numOfNeurons.length) && (layers > 0) ){
-			
+		if(  numOfNeurons.length > 0){
+			int layers = numOfNeurons.length;
 			hiddenLayers = new Layer[layers];
 			
 			initLayer(numOfNeurons[0], inputLayer);
