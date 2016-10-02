@@ -3,14 +3,30 @@ package ANN;
 public class OutputLayer {
 
 	private Layer outputLayer;
+	private HiddenLayer hiddenLayer;
 	
-	public OutputLayer(int numOfOutputs, HiddenLayer hiddenLayer){
-		
-		outputLayer = new Layer(numOfOutputs,  hiddenLayer.numOfNeurons( hiddenLayer.numOfLayers()-1 ));
-		
+	protected OutputLayer(int numOfOutputs, HiddenLayer hiddenLayer){
+		this.hiddenLayer = hiddenLayer;
+		outputLayer = new Layer(numOfOutputs,  hiddenLayer.numOfNeurons( hiddenLayer.numOfLayers()-1 ));	
 	}
 	
-	public void print(){
+	protected HiddenLayer getHiddenLayer(){
+		return hiddenLayer;
+	}
+	
+	protected double[] processSignals(double[] rawSignals){
+		double[] signals = new double[outputLayer.numOfNeurons()];
+		
+		for(int i=0; i < outputLayer.numOfNeurons(); i++){
+			signals[i] = outputLayer.getNeuron(i).feedSignals(rawSignals);
+		}
+		
+		return signals;
+	}
+	
+	
+	
+	protected void print(){
 		System.out.printf("%n -- [OUTPUT LAYER] -- %n");
 		outputLayer.print();
 	}

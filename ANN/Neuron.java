@@ -6,11 +6,11 @@ public class Neuron {
 	private double bias;
 	
 	// Dictionary with all available functions
-	public static final String[] FUNCTIONS = {"sigmoid","hyperbolic tangent","basic treeshold","linear"};
+	protected static final String[] FUNCTIONS = {"sigmoid","hyperbolic tangent","basic treeshold","linear"};
 	// Use this function to produce output
-	public static String function = FUNCTIONS[0];
+	protected static String function = FUNCTIONS[0];
 	
-	public Neuron(int numOfSynapses){
+	protected Neuron(int numOfSynapses){
 		synapses = new double[numOfSynapses];
 		initsynapses();
 	}
@@ -25,7 +25,7 @@ public class Neuron {
 	}
 	
 	
-	public double feedSignals(double[] inputs){
+	protected double feedSignals(double[] inputs){
 		double signal = 0;
 		for(int i=0; i<inputs.length; i++){
 			signal += inputs[i]*synapses[i];
@@ -35,7 +35,7 @@ public class Neuron {
 		return activate(signal);
 	}
 	
-	public double activate(double x){
+	protected double activate(double x){
 		switch(Neuron.function){
 			case "sigmoid":
 				return 1/(1+ Math.pow(Math.E, -x ));
@@ -51,7 +51,7 @@ public class Neuron {
 	}
 	
 	
-	public double[] getWeights(){
+	protected double[] getWeights(){
 		double[] weightsAndBias = new double[synapses.length+1]; 
 		for(int i=0; i<synapses.length; i++){
 			weightsAndBias[i] = synapses[i];
@@ -60,7 +60,7 @@ public class Neuron {
 		return weightsAndBias;
 	}
 	
-	public void printWeights(){
+	protected void printWeights(){
 		System.out.printf(" [ ");
 		for(int i=0; i<synapses.length; i++){
 			System.out.printf( " %.3f ", synapses[i]);
