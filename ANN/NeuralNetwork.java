@@ -18,7 +18,20 @@ public class NeuralNetwork {
 		outputLayer = new OutputLayer(outputs, hiddenLayer);
 	}
 	
+	public void activationFunction(int id){
+		Neuron.function = Neuron.FUNCTIONS[id];
+	}
+	
 	public double[] feed(double[] inputs){
 		return inputLayer.feedSignals(inputs, outputLayer);
 	}
+	
+	public void print(double[] array){
+		for(double output : array){
+			System.out.println(output);
+		}
+	}
+	
+	
+	
 }

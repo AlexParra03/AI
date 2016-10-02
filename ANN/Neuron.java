@@ -35,6 +35,7 @@ public class Neuron {
 		return activate(signal);
 	}
 	
+	
 	protected double activate(double x){
 		switch(Neuron.function){
 			case "sigmoid":

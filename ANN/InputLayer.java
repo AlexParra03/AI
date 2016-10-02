@@ -12,7 +12,8 @@ public class InputLayer {
 		double[] signals = new double[rawSignals.length];
 		if(rawSignals.length == inputLayer.numOfNeurons()){
 			for(int i=0; i < inputLayer.numOfNeurons(); i++){
-				signals[i] = inputLayer.getNeuron(i).feedSignals(rawSignals);
+				double[] individualSignal = {rawSignals[i]};
+				signals[i] = inputLayer.getNeuron(i).feedSignals(individualSignal);
 			}
 			
 			return outputLayer.processSignals( outputLayer.getHiddenLayer().processSignals(signals) );
