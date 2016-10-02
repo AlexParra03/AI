@@ -8,14 +8,11 @@ public class HiddenLayer {
 	public HiddenLayer( int[] numOfNeurons, InputLayer inputLayer){
 		
 		if(  numOfNeurons.length > 0){
-			int layers = numOfNeurons.length;
-			hiddenLayers = new Layer[layers];
+			// Creating Layers based on the neurons array size
+			hiddenLayers = new Layer[numOfNeurons.length];
 			
 			initLayer(numOfNeurons[0], inputLayer);
-			// Adding Extra layers
-			for(int i= 1; i < layers; i++){
-				addExtraLayers(numOfNeurons[i]);
-			}
+			addExtraLayers(numOfNeurons);
 
 		}else{
 			// Error
@@ -32,9 +29,9 @@ public class HiddenLayer {
 		hiddenLayers[0] = new Layer(numOfNeurons, inputLayer.numOfNeurons() );
 	}
 	
-	private void addExtraLayers(int numOfNeurons){
+	private void addExtraLayers(int[] numOfNeurons){
 		for(int i=1; i<hiddenLayers.length; i++){
-			hiddenLayers[i] = new Layer(numOfNeurons, numOfNeurons(i-1));
+			hiddenLayers[i] = new Layer(numOfNeurons[i], numOfNeurons(i-1));
 		}
 	}
 	
