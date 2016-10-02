@@ -49,4 +49,22 @@ public class Neuron {
 				return 0;
 		}
 	}
+	
+	
+	public double[] getWeights(){
+		double[] weightsAndBias = new double[synapses.length+1]; 
+		for(int i=0; i<synapses.length; i++){
+			weightsAndBias[i] = synapses[i];
+		}
+		weightsAndBias[weightsAndBias.length-1] = bias;
+		return weightsAndBias;
+	}
+	
+	public void printWeights(){
+		System.out.printf(" [ ");
+		for(int i=0; i<synapses.length; i++){
+			System.out.printf( " %.3f ", synapses[i]);
+		}
+		System.out.printf( " b:%.3f ] ", bias);
+	}
 }
