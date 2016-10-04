@@ -9,6 +9,7 @@ public class Neuron {
 	protected static final String[] FUNCTIONS = {"sigmoid","hyperbolic tangent","basic treeshold","linear"};
 	// Use this function to produce output
 	protected static String function = FUNCTIONS[0];
+	protected static double LearningRate = 0.1;
 	
 	protected Neuron(int numOfSynapses){
 		synapses = new double[numOfSynapses];
@@ -49,6 +50,13 @@ public class Neuron {
 			default: //error
 				return 0;
 		}
+	}
+	
+	protected void train(double inputs[], double targetOutput, double currentOutput){
+		for(int i=0; i<synapses.length; i++){
+			synapses[i] *= Neuron.LearningRate * (Math.abs(targetOutput - currentOutput)) * inputs[i]; 
+		}
+		
 	}
 	
 	
