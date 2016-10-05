@@ -18,17 +18,18 @@ public class NeuralNetwork {
 		outputLayer = new OutputLayer(outputs, hiddenLayer);
 	}
 	
+	protected double[] feed(double[] rawSignals){
+		return outputLayer.processSignals( hiddenLayer.processSignals( inputLayer.processSignals(rawSignals) ) );
+	}
+	
 	public void activationFunction(int id){
 		Neuron.function = Neuron.FUNCTIONS[id];
 	}
 	
-	public double[] feed(double[] inputs){
-		return inputLayer.feedSignals(inputs, outputLayer);
-	}
-	
 	public void print(double[] array){
+		System.out.println();
 		for(double output : array){
-			System.out.println(output);
+			System.out.print(output + " ");
 		}
 	}
 	
