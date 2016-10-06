@@ -8,10 +8,16 @@ public class InputLayer {
 		inputLayer = new Layer(inputs, 1);
 	}
 	
-
 	
-	protected void train(double[] inputs, double[] targetOutput, OutputLayer outputLayer){
-
+	protected void train(double[] signals, double targetOutput, double currentOutput){
+		if(signals.length == inputLayer.numOfNeurons()){
+			for(int i=0; i<inputLayer.numOfNeurons(); i++){
+				double[] signal = {signals[i]};
+				inputLayer.getNeuron(i).train(signal, targetOutput, currentOutput);
+			}
+		}else{
+			// error
+		}
 	}
 	
 	protected double[] processSignals(double[] rawSignals){
@@ -34,6 +40,10 @@ public class InputLayer {
 	protected void print(){
 		System.out.printf("%n -- [INPUT LAYER] -- %n");
 		inputLayer.print();
+	}
+	
+	protected Layer getLayer(){
+		return inputLayer;
 	}
 
 	

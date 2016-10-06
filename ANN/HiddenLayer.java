@@ -4,7 +4,6 @@ package ANN;
 public class HiddenLayer {
 	
 	private Layer[] hiddenLayers;
-	private InputLayer inputLayer;
 	private double[] outputSignal;
 	
 	protected HiddenLayer( int[] numOfNeurons, InputLayer inputLayer){
@@ -12,8 +11,6 @@ public class HiddenLayer {
 		if(  numOfNeurons.length > 0){
 			// Creating Layers based on the neurons array size
 			hiddenLayers = new Layer[numOfNeurons.length];
-			
-			this.inputLayer = inputLayer;
 			initLayer(numOfNeurons[0], inputLayer);
 			addExtraLayers(numOfNeurons);
 
@@ -62,6 +59,7 @@ public class HiddenLayer {
 		
 	}
 	
+	
 	protected int numOfLayers(){
 		return hiddenLayers.length;
 	}
@@ -82,5 +80,9 @@ public class HiddenLayer {
 			System.out.println();
 			hiddenLayers[i].print();
 		}
+	}
+	
+	protected Layer[] getLayers(){
+		return hiddenLayers;
 	}
 }

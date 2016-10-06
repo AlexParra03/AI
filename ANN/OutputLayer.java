@@ -26,6 +26,10 @@ public class OutputLayer {
 	
 	
 	
+	protected Layer getLayer(){
+		return outputLayer;
+	}
+	
 	protected void print(){
 		System.out.printf("%n -- [OUTPUT LAYER] -- %n");
 		outputLayer.print();

@@ -3,7 +3,6 @@ package ANN;
 public class Layer {
 
 	private Neuron[] neurons;
-	private Layer nextLayer;
 	
 	protected Layer(int numOfNeurons, int numOfInputs){
 		neurons = new Neuron[numOfNeurons];
@@ -12,11 +11,6 @@ public class Layer {
 		}
 	}
 	
-	protected void train(double[] inputs, double targetOutput, double currentOutput){
-		for(Neuron neuron : neurons){
-			neuron.train(inputs, targetOutput, currentOutput);
-		}
-	}
 	
 	protected Neuron[] getNeurons(){
 		return neurons;
