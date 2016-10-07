@@ -36,19 +36,19 @@ public class NeuralNetwork {
 		
 	}
 	
-	public double[] feed1(double[] rawSignals){
-		return outputLayer.processSignals( hiddenLayer.processSignals( inputLayer.processSignals(rawSignals) ) );
-		
-	}
-	
 	public double[] feed(double[] signals){
-		processLayers(signals, 0);
+		if(signals.length == layers[0].numOfNeurons()){
+			processLayers(signals, 0);
+		}else{
+			//Error, there needs to be 1 signal per input neuron
+		}
+		
 		return this.output;
 	}
 	
 	
 	private void processLayers(double[] rawSignals ,int layer){
-		if(layer > 0 && layer < layers.length-1){
+		if(layer >= 0 && layer < layers.length-1){
 			processLayers( processLayer(rawSignals, layer), layer+1);
 		}else if(layer == layers.length-1){
 			this.output =  processLayer(rawSignals, layer);

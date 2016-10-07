@@ -35,30 +35,6 @@ public class HiddenLayer {
 		}
 	}
 	
-	protected double[] processSignals(double[] rawSignals){
-		processLayer(rawSignals, 0);
-		return this.outputSignal;
-	}
-	
-	
-	
-	private void processLayer(double[] rawSignals, int layer){
-		double[] signals = new double[hiddenLayers[layer].numOfNeurons()];
-		if(layer >=0 && layer < hiddenLayers.length ){
-			for(int i=0; i<hiddenLayers[layer].numOfNeurons(); i++){
-				signals[i] = hiddenLayers[layer].getNeuron(i).feedSignals(rawSignals);
-			}
-			if(layer == hiddenLayers.length-1){ // Processed the last layer
-				this.outputSignal = signals; // Store the finished signals when it's done processing
-			}else{
-				processLayer(signals, layer+1);
-			} 
-		}
-		
-		
-		
-	}
-	
 	
 	protected int numOfLayers(){
 		return hiddenLayers.length;

@@ -14,16 +14,6 @@ public class OutputLayer {
 		return hiddenLayer;
 	}
 	
-	protected double[] processSignals(double[] rawSignals){
-		double[] signals = new double[outputLayer.numOfNeurons()];
-		
-		for(int i=0; i < outputLayer.numOfNeurons(); i++){
-			signals[i] = outputLayer.getNeuron(i).feedSignals(rawSignals);
-		}
-		
-		return signals;
-	}
-	
 	
 	
 	protected Layer getLayer(){

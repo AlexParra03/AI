@@ -9,29 +9,6 @@ public class InputLayer {
 	}
 	
 	
-	protected void train(double[] signals, double targetOutput, double currentOutput){
-		if(signals.length == inputLayer.numOfNeurons()){
-			for(int i=0; i<inputLayer.numOfNeurons(); i++){
-				double[] signal = {signals[i]};
-				inputLayer.getNeuron(i).train(signal, targetOutput, currentOutput);
-			}
-		}else{
-			// error
-		}
-	}
-	
-	protected double[] processSignals(double[] rawSignals){
-		double[] signals = new double[rawSignals.length];
-		if(rawSignals.length == inputLayer.numOfNeurons()){
-			for(int i=0; i < inputLayer.numOfNeurons(); i++){
-				double[] individualSignal = {rawSignals[i]};
-				signals[i] = inputLayer.getNeuron(i).feedSignals(individualSignal);
-			}
-			return signals;
-		}else{
-			return null;
-		}
-	}
 	
 	protected int numOfNeurons(){
 		return inputLayer.numOfNeurons();
