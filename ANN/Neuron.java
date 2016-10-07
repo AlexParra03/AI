@@ -60,7 +60,7 @@ public class Neuron {
 	
 	protected void train(double inputs[], double targetOutput, double currentOutput){
 		for(int i=0; i<synapses.length; i++){
-			synapses[i] *= Neuron.LearningRate * (Math.abs(targetOutput - currentOutput)) * inputs[i]; 
+			synapses[i] *= Neuron.LearningRate * (targetOutput - currentOutput) * inputs[i]; 
 		}
 		
 	}

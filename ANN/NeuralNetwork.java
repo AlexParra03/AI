@@ -72,6 +72,34 @@ public class NeuralNetwork {
 		return signals;
 	}
 	
+	private double average(double[] sets){
+		double average = 0;
+		for(double set : sets){
+			average += set;
+		}
+		average = average / sets.length;
+		return average;
+	}
+	
+	public void train(double[] inputs, double[] targetOutputs){
+		double[] currentOutputs = feed(inputs);
+		double output = average(targetOutputs);
+		double target = average(currentOutputs);
+		
+		// training first layer, input layer
+		for(int i=0; i < layers[0].numOfNeurons(); i++){
+			double[] individualInput = {inputs[i]};
+			layers[0].getNeuron(i).train(individualInput, target, output);
+		}
+		
+		//training rest of the network
+		for(int i=1; i<layers.length; i++){
+			for(int j=0; j<layers[i].numOfNeurons(); j++){
+				//layers[i].getNeuron(j).train(thisLayerOutputs, target, output);
+			}
+		}
+	}
+	
 	
 	public void printWeights(){
 		for(Layer layer : layers){
