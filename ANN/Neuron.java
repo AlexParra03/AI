@@ -6,7 +6,7 @@ public class Neuron {
 	private double bias;
 	
 	protected static Functions function = Functions.SIGMOID;
-	protected static double LearningRate = 0.1;
+	protected static double LearningRate = 0.05;
 	
 	
 	public enum Functions{
