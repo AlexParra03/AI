@@ -105,7 +105,7 @@ public class NeuralNetwork {
 		//training rest of the network
 		for(int i=1; i<layers.length; i++){
 			for(int j=0; j<layers[i].numOfNeurons(); j++){
-				layers[i].getNeuron(j).train(this.signals[i], target, output);
+				layers[i].getNeuron(j).train(this.signals[i-1], target, output);
 			}
 		}
 	}
