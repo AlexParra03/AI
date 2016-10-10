@@ -7,7 +7,7 @@ public class NeuralNetwork {
 	HiddenLayer hiddenLayer;
 	OutputLayer outputLayer;
 	private double[] output;
-	
+	private double[][] signals;
 	
 	private Layer[] layers;
 	
@@ -16,17 +16,17 @@ public class NeuralNetwork {
 		inputLayer = new InputLayer(inputs);
 		hiddenLayer = new HiddenLayer(hiddenNeurons, inputLayer);
 		outputLayer = new OutputLayer(outputs, hiddenLayer);
-		orderLayers();
+		initLayers();
 	}
 	
 	public NeuralNetwork(int inputs, int hiddenNeurons, int outputs){
 		inputLayer = new InputLayer(inputs);
 		hiddenLayer = new HiddenLayer(hiddenNeurons, inputLayer);
 		outputLayer = new OutputLayer(outputs, hiddenLayer);
-		orderLayers();
+		initLayers();
 	}
 	
-	private void orderLayers(){
+	private void initLayers(){
 		this.layers = new Layer[1 + hiddenLayer.getLayers().length + 1];
 		this.layers[0] = inputLayer.getLayer();
 		for(int i=0; i<hiddenLayer.getLayers().length; i++){
@@ -34,6 +34,13 @@ public class NeuralNetwork {
 		}
 		this.layers[layers.length-1] = outputLayer.getLayer();
 		
+		int maxNeurons = 0;
+		for(int i=0; i<layers.length; i++){
+			if(maxNeurons < layers[i].numOfNeurons()){
+				maxNeurons = layers[i].numOfNeurons();
+			}
+		}
+		signals = new double[layers.length][maxNeurons];
 	}
 	
 	public double[] feed(double[] signals){
@@ -69,6 +76,8 @@ public class NeuralNetwork {
 		}else{
 			//error
 		}
+		//Saving outputs of each layer into global array for training.
+		this.signals[layer] = signals;
 		return signals;
 	}
 	
@@ -89,13 +98,14 @@ public class NeuralNetwork {
 		// training first layer, input layer
 		for(int i=0; i < layers[0].numOfNeurons(); i++){
 			double[] individualInput = {inputs[i]};
-			layers[0].getNeuron(i).train(individualInput, target, output);
+			layers[0].getNeuron(i).train(individualInput, target, output); //Train
 		}
+		
 		
 		//training rest of the network
 		for(int i=1; i<layers.length; i++){
 			for(int j=0; j<layers[i].numOfNeurons(); j++){
-				//layers[i].getNeuron(j).train(thisLayerOutputs, target, output);
+				layers[i].getNeuron(j).train(this.signals[i], target, output);
 			}
 		}
 	}
