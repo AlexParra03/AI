@@ -11,6 +11,7 @@ package ANN;
  */
 public abstract class Neuron {
     
+    protected static double[] weightRange = {-1.0, 1.0}; 
     protected static Functions function = Functions.NONE;
     protected static double LearningRate = 0.05;
 
@@ -28,6 +29,23 @@ public abstract class Neuron {
     protected abstract double[] weights();
     protected abstract double bias();
 
+    
+    protected static void setWeightRange(double start, double end){
+        if(start <= end){
+            weightRange[0] = start;
+            weightRange[1] = end;
+        }else{
+            System.out.println("Error, start weight can't be bigger than end weight");
+        }
+    }
+    
+    protected static double random(double start, double end){
+        double size = end - start;
+        double output = Math.random() * size;
+        output += start;
+        return output;
+    }
+    
     protected double activate(double x){
             switch(function){
                     case NONE:

@@ -17,9 +17,9 @@ public class OutputLayer extends Layer {
     TODO: Create groups of Hidden Neurons and store them in this Hidden Layer
     */
     protected OutputLayer(int numOfNeurons, int numOfSynapses){
-        this.neurons = new HiddenNeuron[numOfNeurons];
+        this.neurons = new OutputNeuron[numOfNeurons];
         for(int i=0; i<numOfNeurons; i++){
-                neurons[i] = new HiddenNeuron(numOfSynapses);
+                neurons[i] = new OutputNeuron(numOfSynapses);
         }
     }
     

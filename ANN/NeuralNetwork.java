@@ -65,21 +65,29 @@ public class NeuralNetwork {
         feedRecursive(outputs, layer+1);
     }
     
+    public Layer layer(int index){
+        if(index >=0 && index < layers.length){
+            return layers[index];
+        }
+        return null;
+    }
+    
+    // Prints the synapses of all the network
     public void printInfo(){
         
         for(int i=0; i<layers.length; i++){
             Layer layer = layers[i];
-            String info = " " + layer.getClass().getSimpleName() +" :";
+            System.out.printf( layer.getClass().getSimpleName() +" :");
             for(int j=0; j<layer.size(); j++ ){
-                info += " [";
+                System.out.printf( " [");
                 double[] weights = layer.neuron(j).weights();
                 for(int k=0; k<weights.length; k++){
-                    info += weights[k] +", ";
+                    System.out.printf( "%.4f, ", weights[k]) ;
                 }
-                info +=  "bias:" +layer.neuron(j).bias() + "] ";
+                System.out.printf( "bias:%.4f] ", layer.neuron(j).bias() );
                 
             }
-            System.out.println(info);
+            System.out.printf("%n");
         }
     }
     

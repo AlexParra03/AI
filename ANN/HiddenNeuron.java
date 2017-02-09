@@ -17,11 +17,23 @@ public class HiddenNeuron extends Neuron {
     protected HiddenNeuron(int numOfSynapses){
         this.synapses = new double[numOfSynapses];
             for(int i=0; i< synapses.length; i++){
-                //synapses[i] = Math.random();
-                synapses[i] = 0;
+                synapses[i] = Neuron.random(Neuron.weightRange[0], Neuron.weightRange[1]);
             }
-        //bias = Math.random();
-        this.bias = 0;
+        this.bias = Neuron.random(Neuron.weightRange[0], Neuron.weightRange[1]);
+    }
+    
+    protected void setWeights(double[] weights){
+        if(weights.length == synapses.length){
+            for(int i=0; i<weights.length; i++){
+                synapses[i] = weights[i];
+            }
+        }else{
+            System.out.println("Error: weights array needs to be size " + synapses.length);
+        }
+    }
+    
+    protected void setBias(double bias){
+        this.bias = bias;
     }
     
     @Override

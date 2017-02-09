@@ -12,9 +12,22 @@ package ANN;
 public class Tester {
     
     public static void main(String[] args){
-        int[] structure = {3,4,3,2,3};
+        
+        Neuron.setWeightRange(-2, 5);
+        
+        int[] structure = {2,3, 3};
         NeuralNetwork nn = new NeuralNetwork(structure);
         nn.printInfo();
+        
+        double[] inputs = {2, 3};
+        double[] output = nn.feedForward(inputs);
+        System.out.println();
+        
+        for(double d : output){
+            System.out.print(d + "  ");
+        }
+        System.out.println();
+        
        
     }
 }
