@@ -7,9 +7,9 @@ public class NeuralNetwork {
 	HiddenLayer hiddenLayer;
 	OutputLayer outputLayer;
 	private double[] output;
-	private double[][] signals;
+	public double[][] signals;
 	
-	private Layer[] layers;
+	public Layer[] layers;
 	
 	
 	public NeuralNetwork(int inputs, int[] hiddenNeurons, int outputs){

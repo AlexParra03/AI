@@ -2,7 +2,7 @@ package ANN;
 
 public class Layer {
 
-	private Neuron[] neurons;
+	public Neuron[] neurons;
 	
 	protected Layer(int numOfNeurons, int numOfInputs){
 		neurons = new Neuron[numOfNeurons];

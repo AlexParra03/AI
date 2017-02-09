@@ -2,14 +2,15 @@ package ANN;
 
 public class Neuron {
 
-	private double[] synapses;
-	private double bias;
+	public double[] synapses;
+	public double bias;
 	
-	protected static Functions function = Functions.SIGMOID;
+	protected static Functions function = Functions.NONE;
 	protected static double LearningRate = 0.05;
 	
 	
 	public enum Functions{
+		NONE,
 		SIGMOID,
 		HYPERBOLIC_TANGENT,
 		BASIC_TREESHOLD,
@@ -25,9 +26,11 @@ public class Neuron {
 	// Creating synapses with random weights from 0 to .999
 	private void initsynapses(){
 		for(int i=0; i< synapses.length; i++){
-			synapses[i] = Math.random();
+			//synapses[i] = Math.random();
+			synapses[i] = 0;
 		}
-		bias = Math.random();
+		//bias = Math.random();
+		bias = 0;
 		
 	}
 	
@@ -45,6 +48,8 @@ public class Neuron {
 	
 	private double activate(double x){
 		switch(function){
+			case NONE:
+				return x;
 			case SIGMOID:
 				return 1/(1+ Math.pow(Math.E, -x ));
 			case HYPERBOLIC_TANGENT:
