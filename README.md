@@ -8,9 +8,9 @@ Creating a neural network:
 Neural Network Structure: int[] structure (bigger than 1 layer).
 Ex.
 
-int[] structure = 
+`int[] structure = `
 
-{3, 4, 3, 2}
+`{3, 4, 3, 2};`
 
 3 Neurons on Input Layer
 
@@ -23,7 +23,8 @@ int[] structure =
 
 or
 
-{3, 1}
+`{3, 1}`
+
 3 Neurons on Input Layer
 
 1 Neuron on Output Layer
@@ -32,15 +33,15 @@ or
 etc.
 
 
-NeuralNetwork net = new NeuralNetwork(structure);
+`NeuralNetwork net = new NeuralNetwork(structure);`
 
 
 Array of inputs can be of any size
 
-double[] inputs = {ex, ex, ex};
+`double[] inputs = {ex, ex, ex};`
 
 Outputs are of the same size as output neurons
 
-double[] outputs = net.feedForward(inputs);
+`double[] outputs = net.feedForward(inputs);`
   
   
