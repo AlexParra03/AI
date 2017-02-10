@@ -3,20 +3,32 @@ Neural Netowks, Genetic Algoritms and more biological stuff.
 
 How to use the library
 
+Creating a neural network:
 
-// Creating a neural network: 3 neurons in input layer, 2 neurons in single hidden Layer, 1 output neuron.
+Neural Network Structure: int[] structure (bigger than 1 layer).
+Ex.
 
-NeuralNetwork nn = new NeuralNetwork(3, 2, 1);
+ int[] structure = 
+      {3, 4, 3, 2}
+      3 Neurons on Input Layer
+      4 Neurons on 1st Hidden Layer
+      3 Neurons on 2nd Hidden Layer
+      2 Neurons on Output Layer
+      
+      or
+      
+      {3, 1}
+      3 Neurons on Input Layer
+      1 Neuron on Output Layer
+      
+      etc.
+      
+NeuralNetwork net = new NeuralNetwork(structure);
 
-// 2 neurons in input layer, [4-4-3] neurons in hidden layers, 2 output neurons.
+Array of inputs can be of any size
+double[] inputs = {ex, ex, ex};
 
-NeuralNetwork nn2 = new NeuralNetwork(2, new int{4,4,3}, 2);
-
-//Training:  {input (same size as input neurons)} {target output(same size as output neurons)}.
-
- nn.train(new int{2.00000, 0.5000, 1.2000}, new int{1,0} );
- 
-double[] output =  nn.feed(new int{2.00000, 0.5000, 1.2000});
-
+Outputs are of the same size as output neurons
+double[] outputs = net.feedForward(inputs);
   
   
