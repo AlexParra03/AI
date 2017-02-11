@@ -24,6 +24,24 @@ public class OutputNeuron extends Neuron {
         this.bias = Neuron.random(Neuron.weightRange[0], Neuron.weightRange[1]);
     }
     
+    /*
+    @param index: index of the Nth synapses for this neuron, bias is counted as the last synapse
+    @param weight: new weight for the synapse
+    TODO: Set individually the weights for the given synapse
+    */
+    @Override
+    protected void setSynapse(int index, double weight){
+        if(index >= 0 && index < synapses.length+1){
+            if(index == synapses.length){ // setting the bias as the last index
+                this.bias = weight;
+            }else{
+                this.synapses[index] = weight;
+            }
+        }else{
+            System.out.println("Error: can set synapse weight, invalid index");
+        }
+    }
+    
     protected void setWeights(double[] weights){
         if(weights.length == synapses.length){
             for(int i=0; i<weights.length; i++){
@@ -63,6 +81,12 @@ public class OutputNeuron extends Neuron {
     @Override
     protected double bias() {
         return this.bias;
+    }
+
+    @Override
+    public int numOfSynapses() {
+        //Synapses and bias
+        return this.synapses.length + 1;
     }
 
     

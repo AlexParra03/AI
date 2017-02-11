@@ -65,6 +65,20 @@ public class NeuralNetwork {
         feedRecursive(outputs, layer+1);
     }
     
+    public void setSynapses(double[][][] synapses){
+        for(int i=1; i<this.layers.length; i++){
+            Neuron[] neurons = this.layers[i].neurons();
+            for(int j=0; j<neurons.length; j++){
+                Neuron neuron = neurons[j];
+                for(int k=0; k< neuron.numOfSynapses(); k++){
+                    neuron.setSynapse(k, synapses[i][j][k]);
+                    System.out.println(i + " " + j + " " + k + " : " + synapses[i][j][k] );
+                }
+            }
+        }
+    }
+           
+    
     public Layer layer(int index){
         if(index >=0 && index < layers.length){
             return layers[index];

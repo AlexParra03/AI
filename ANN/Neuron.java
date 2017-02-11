@@ -25,10 +25,13 @@ public abstract class Neuron {
             LINEAR
     }
         
+    public abstract int numOfSynapses();
     protected abstract double feed(double[] inputs);
     protected abstract double[] weights();
     protected abstract double bias();
+    protected abstract void setSynapse(int index, double weight);
 
+    
     
     protected static void setWeightRange(double start, double end){
         if(start <= end){
@@ -45,6 +48,7 @@ public abstract class Neuron {
         output += start;
         return output;
     }
+    
     
     protected double activate(double x){
             switch(function){

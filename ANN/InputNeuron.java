@@ -29,6 +29,16 @@ public class InputNeuron extends Neuron {
     protected double bias() {
         return 0;
     }
+
+    @Override
+    protected void setSynapse(int index, double weight) {
+        System.out.println("Error: can not set weights for input neuron");
+    }
+    
+    @Override
+    public int numOfSynapses() {
+        return 1;
+    }
     
     
 }
