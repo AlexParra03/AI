@@ -72,7 +72,7 @@ public class NeuralNetwork {
                 Neuron neuron = neurons[j];
                 for(int k=0; k< neuron.numOfSynapses(); k++){
                     neuron.setSynapse(k, synapses[i][j][k]);
-                    System.out.println(i + " " + j + " " + k + " : " + synapses[i][j][k] );
+                    //System.out.println(i + " " + j + " " + k + " : " + synapses[i][j][k] );
                 }
             }
         }
