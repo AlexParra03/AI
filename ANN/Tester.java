@@ -24,7 +24,7 @@ public class Tester {
         
         double[][][] synapses = 
         {
-            {   {1, 1, 1},{2, 2, 2}   },
+            {      }, // Can't set weights for input layer
             {   {-2, 3, 2}, {-1, 2, 2}, {2, 1.5, 1} },
             {   {2, 4, 3, 2} }
                 
