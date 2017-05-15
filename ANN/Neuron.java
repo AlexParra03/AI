@@ -51,20 +51,38 @@ public abstract class Neuron {
     
     
     protected double activate(double x){
-            switch(function){
-                    case NONE:
-                            return x;
-                    case SIGMOID:
-                            return 1/(1+ Math.pow(Math.E, -x ));
-                    case HYPERBOLIC_TANGENT:
-                            return (1- Math.pow(Math.E, -x))/(1+Math.pow(Math.E, -x) );
-                    case BASIC_TREESHOLD:
-                            return (x < 0.5) ? 0 : 1;
-                    case LINEAR:
-                            return x;
-                    default: //error
-                            return 0;
-            }
+        switch(function){
+            case NONE:
+                return x;
+            case SIGMOID:
+                return 1/(1+ Math.pow(Math.E, -x ));
+            case HYPERBOLIC_TANGENT:
+                return (1- Math.pow(Math.E, -x))/(1+Math.pow(Math.E, -x) );
+            case BASIC_TREESHOLD:
+                return (x < 0.5) ? 0 : 1;
+            case LINEAR:
+                return x;
+            default: //error
+                return 0;
+        }
+    }
+    
+    protected double derivative(double x, double sum){
+         switch(function){
+            case NONE:
+                return  1* sum;
+            case SIGMOID:
+                return 0* sum;
+            case HYPERBOLIC_TANGENT:
+                return 0* sum;
+            case BASIC_TREESHOLD:
+                return 0* sum;
+            case LINEAR:
+                return 1* sum;
+            default: //error
+                return 0;
+         }
+    
     }
         
     

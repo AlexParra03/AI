@@ -15,7 +15,7 @@ public class Tester {
         
         Neuron.setWeightRange(-2, 5);
         
-        
+        /*
         int[] structure = {2,3, 1};
         NeuralNetwork nn = new NeuralNetwork(structure);
         nn.printInfo();
@@ -41,6 +41,24 @@ public class Tester {
 
         nn.printInfo();
         
-       
+        */
+        int[] structure2 = {3, 3, 2};
+        NeuralNetwork n = new NeuralNetwork(structure2);
+        double[][][] syn = 
+        {
+            {},
+            { {2, 3, 1, 0}, { 4, 5, 6, 0}, { 2.5, 3.5, 4.5, 0} },
+            { {4.2, 5, 7, 0}, {4.2, 5, 7, 0 } }
+            
+        };
+        
+        
+        n.setSynapses(syn);
+        n.printInfo();
+        double[] inp = {2, 2, 2};
+        double[] output  = {6, 5};
+        n.train(inp, output);
+        n.printInfo();
+        
     }
 }

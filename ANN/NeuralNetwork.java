@@ -65,6 +65,17 @@ public class NeuralNetwork {
         feedRecursive(outputs, layer+1);
     }
     
+    /*
+    TODO set individial weights of synapses (including bias) for all layers except input layer
+    @param synapses: 1st dimension is whole structure, 2nd dimension contains arrays of neurons, 3rd dimension has the individual values for weights
+    -----------------
+    [ [Neuron 1] [Neuron 2] [Neuron 3] ]  Layer 1 (input layer is ignored, all weights are 1.0)
+    [ [Neuron 1] [Neuron 2] [Neuron 3] ]
+    [ [Neuron 1] [Neuron 2] ... ]
+    [ [Neuron 1] [Neuron 2] ... ]
+    -------------------
+    [Neuron X] = { Weight 1, Weight 2, ... , bias } 
+    */
     public void setSynapses(double[][][] synapses){
         for(int i=1; i<this.layers.length; i++){
             Neuron[] neurons = this.layers[i].neurons();
@@ -102,6 +113,37 @@ public class NeuralNetwork {
                 
             }
             System.out.printf("%n");
+        }
+    }
+    
+    public void train(double[] inputs, double[] desiredOutputs){
+        double[] outputs = feedForward(inputs);
+        double[] error = new double[outputs.length];
+        for(int i=0; i<outputs.length; i++){
+            error[i] = desiredOutputs[i] - outputs[i];
+            OutputNeuron outputNeuron = (OutputNeuron) layers[layers.length-1].neuron(i);
+            for(int weights = 0; weights < outputNeuron.numOfSynapses()-1; weights++){
+                HiddenNeuron neuron = (HiddenNeuron) layers[layers.length-2].neuron(weights);
+                outputNeuron.setSynapse(weights, neuron.derivative(neuron.sum, neuron.sum));
+                recursiveBackpropagation(neuron.derivative(neuron.sum, neuron.sum), layers.length-2, weights);
+            }
+        }
+        
+     
+        
+    }
+    
+    
+    private void recursiveBackpropagation(double chainRule, int currentLayer, int currentNeuron){
+        if(currentLayer >= 1){
+            return;
+        }
+        
+        HiddenNeuron neuron = (HiddenNeuron) layers[currentLayer].neuron(currentNeuron);
+        for(int i=0; i<neuron.numOfSynapses(); i++){
+            HiddenNeuron prev = (HiddenNeuron) layers[currentLayer-1].neuron(i);
+            neuron.setSynapse( i  , chainRule * prev.derivative(prev.sum, prev.sum) * Neuron.LearningRate);
+            recursiveBackpropagation(chainRule * prev.derivative(prev.sum, prev.sum), currentLayer-1, i);
         }
     }
     
