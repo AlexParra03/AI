@@ -14,7 +14,7 @@ public class HiddenLayer extends Layer {
     /*
     @param numOfNeurons: the number of neurons being created and stored in this layer
     @param numOfSynapses: synapses connected with the previous neuron, size needs to be the same number of neurons in the previous layer
-    TODO: Create groups of Hidden Neurons and store them in this Hidden Layer
+    Create groups of Hidden Neurons and store them in this Hidden Layer
     */
     protected HiddenLayer(int numOfNeurons, int numOfSynapses){
         this.neurons = new HiddenNeuron[numOfNeurons];

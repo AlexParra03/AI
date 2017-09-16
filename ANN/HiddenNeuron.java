@@ -25,7 +25,7 @@ public class HiddenNeuron extends Neuron {
         /*
     @param index: index of the Nth synapses for this neuron, bias is counted as the last synapse
     @param weight: new weight for the synapse
-    TODO: Set individually the weights for the given synapse
+    Set individually the weights for the given synapse
     */
     @Override
     protected void setSynapse(int index, double weight){

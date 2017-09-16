@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package ANN;
 
 /**
@@ -27,7 +23,7 @@ public class OutputNeuron extends Neuron {
     /*
     @param index: index of the Nth synapses for this neuron, bias is counted as the last synapse
     @param weight: new weight for the synapse
-    TODO: Set individually the weights for the given synapse
+    Set individually the weights for the given synapse
     */
     @Override
     protected void setSynapse(int index, double weight){

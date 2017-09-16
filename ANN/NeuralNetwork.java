@@ -16,7 +16,7 @@ public class NeuralNetwork {
     
     /*
     @param networkStructure: number of neurons in each layer, [ Input -> Hidden -> Output ] or [ Input -> Output ]
-    TODO: Create the whole network structure. Instanciate layers and neuros with the proper synapses based on the number of neurons in previous layers.
+    Create the whole network structure. Instanciate layers and neuros with the proper synapses based on the number of neurons in previous layers.
     */
     public NeuralNetwork(int[] networkStructure){
         int size = networkStructure.length;
@@ -44,7 +44,7 @@ public class NeuralNetwork {
     /*
     @param inputs: inputs being feed to the whole network
     @return outputs after being processed by the whole network
-    TODO: Compute inputs layer by layer, and feed the output to the next layer. Then call the outputs which are only stored in Output Layers
+    Compute inputs layer by layer, and feed the output to the next layer. Then call the outputs which are only stored in Output Layers
     */
     public double[] feedForward(double[] inputs){
         feedRecursive(inputs, 0);
@@ -53,7 +53,7 @@ public class NeuralNetwork {
     }
     
     /*
-    TODO: Recursively feed current layer, and give outputs to the next layer for the whole network.
+    Recursively feed current layer, and give outputs to the next layer for the whole network.
     */
     private void feedRecursive(double[] inputs, int layer){
         if(layer >= layers.length){
@@ -66,7 +66,7 @@ public class NeuralNetwork {
     }
     
     /*
-    TODO set individial weights of synapses (including bias) for all layers except input layer
+    set individial weights of synapses (including bias) for all layers except input layer
     @param synapses: 1st dimension is whole structure, 2nd dimension contains arrays of neurons, 3rd dimension has the individual values for weights
     -----------------
     [ [Neuron 1] [Neuron 2] [Neuron 3] ]  Layer 1 (input layer is ignored, all weights are 1.0)
